@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import top.leavesmc.leaves.packet.Packet;
 import top.leavesmc.leaves.packet.PacketType;
 import top.leavesmc.leaves.packet.bytebuf.Bytebuf;
 
@@ -33,6 +34,10 @@ public class ExamplePlugin extends JavaPlugin {
         }
         Bytebuf buf = Bukkit.newByteBuf().writeLong(gameTime).writeLong(gameTime % 24000); // gameTime, dayTime
         player.sendPacket(buf, PacketType.ClientboundSetTime);
+        /* Alternatively:
+        Packet packet = buf.toPacket(PacketType.ClientboundSetTime);
+        player.sendPacket(packet);
+         */
         return true;
     }
 }
