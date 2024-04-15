@@ -2,13 +2,13 @@ Example plugin for bytebuf api of leaves server<br>
 
 Usage:
 ```
-    Bytebuf buf = Bukkit.newByteBuf().writeLong(gameTime).writeLong(gameTime % 24000); // gameTime, dayTime
+    Bytebuf buf = new ByteBuf().writeLong(gameTime).writeLong(gameTime % 24000); // gameTime, dayTime
     player.sendPacket(buf, PacketType.ClientboundSetTime);
 
     /* Alternatively:
-    Bytebuf buf = Bukkit.newByteBuf();
+    Bytebuf buf = new Bytebuf(256);
     buf.writeLong(gameTime).writeLong(gameTime % 24000);
-    Packet packet = buf.toPacket(PacketType.ClientboundSetTime);
+    Packet packet = new Packet(PacketType.ClientboundSetTime, buf);
     player.sendPacket(packet);
     */
 
