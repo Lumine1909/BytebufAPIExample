@@ -32,10 +32,10 @@ public class ExamplePlugin extends JavaPlugin {
         } catch (Exception e) {
             return true;
         }
-        Bytebuf buf = Bukkit.newByteBuf().writeLong(gameTime).writeLong(gameTime % 24000); // gameTime, dayTime
+        Bytebuf buf = new Bytebuf(256).writeLong(gameTime).writeLong(gameTime % 24000); // gameTime, dayTime
         player.sendPacket(buf, PacketType.ClientboundSetTime);
         /* Alternatively:
-        Packet packet = buf.toPacket(PacketType.ClientboundSetTime);
+        Packet packet = new Packet(PacketType.ClientboundSetTime, buf);
         player.sendPacket(packet);
          */
         return true;
