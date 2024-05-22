@@ -18,7 +18,13 @@ Usage:
     Bukkit.getBytebufManager().registerListener(this, new PacketListener() {
         @Override
         public Packet onPacketIn(Player player, Packet packet) {
-            return packet;
+            @Override
+            public Packet onPacketIn(Player player, Packet packet) {
+                if (packet.type() == PacketType.ServerboundChatCommand) {
+                    getLogger().info("Player " + player.getName() + " sent a command: " + packet.bytebuf().readUTFString());
+                }
+                return packet;
+            }
         }
         @Override
         public Packet onPacketOut(Player player, Packet packet) {
