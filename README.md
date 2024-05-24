@@ -25,14 +25,14 @@ Usage:
                 }
                 return packet;
             }
-        }
-        @Override
-        public Packet onPacketOut(Player player, Packet packet) {
-            if (packet.type() == PacketType.ClientboundSystemChat) {
-                getLogger().info("Player " + player.getName() + " received a message");
+            @Override
+            public Packet onPacketOut(Player player, Packet packet) {
+                if (packet.type() == PacketType.ClientboundSystemChat) {
+                    getLogger().info("Player " + player.getName() + " received a message: " + packet.bytebuf().readComponentPlain());
+                }
+                return packet;
             }
-            return packet;
-        }
+        });
     });
 
 ```
